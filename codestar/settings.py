@@ -41,12 +41,22 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
     'blog',
 ]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -137,3 +147,16 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# To prevent 500 errors during login and registration, you need to make
+# the following one-line addition. After this, both login and registration
+# should work without errors regardless of whether you use an email address
+# to sign in/up:
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# To check which version of Python is currently running:
+# 'ls ../.pip-modules/lib'
+
+# To recursively copy allauth stuff into our templates folder:
+# 'cp -r ../.pip-modules/lib/python3.8/site-packages/allauth/templates/* ./templates'
